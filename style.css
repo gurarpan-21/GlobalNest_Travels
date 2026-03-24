@@ -9,10 +9,6 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 /* Navigation */
 .navbar {
     display: flex;
@@ -24,14 +20,20 @@ html {
     position: sticky;
     top: 0;
     z-index: 1000;
-
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
     color: #2c3e50;
+}
+
+/* 🔗 Added: Logo Link Logic */
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .logo span {
@@ -194,35 +196,6 @@ html {
     background: #fff;
 }
 
-.booking-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    align-items: center;
-}
-
-.booking-info, .booking-form {
-    flex: 1;
-    min-width: 300px;
-}
-
-.booking-info h2 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-}
-
-.contact-details {
-    list-style: none;
-    margin-top: 25px;
-}
-
-.contact-details li {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    color: #34495e;
-}
-
 /* Form Styling */
 .booking-form {
     background: #fdfdfd;
@@ -230,6 +203,7 @@ html {
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     border: 1px solid #eee;
+    transition: all 0.4s ease;
 }
 
 .form-group {
@@ -278,31 +252,6 @@ html {
     padding: 30px;
     background: #2c3e50;
     color: white;
-}
-/* Responsive Adjustments for Mobile Devices */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 15px;
-    }
-    
-    .nav-links {
-        margin-top: 15px;
-        gap: 10px;
-    }
-
-    .nav-links li {
-        margin-left: 0;
-    }
-
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-    
-    .booking-container {
-        flex-direction: column;
-        text-align: center;
-    }
 }
 
 /* --- Elegant 12-Card Package Styles --- */
@@ -353,7 +302,7 @@ html {
     list-style: none;
     padding: 0;
     margin-bottom: 25px;
-    text-align: left; /* Left align text inside centered card looks pro */
+    text-align: left;
 }
 
 .package-features li {
@@ -376,19 +325,8 @@ html {
 .btn-book:hover {
     background: #e67e22;
 }
-/* Styling for the dropdown highlights */
-select option[value="custom"] {
-    background-color: #f39c12;
-    color: white;
-    font-weight: bold;
-}
 
-.form-group input::placeholder {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: #bdc3c7;
-}
-/* --- Form Layout Upgrades --- */
+/* Form Layout Upgrades */
 .form-row {
     display: flex;
     gap: 15px;
@@ -398,9 +336,7 @@ select option[value="custom"] {
     flex: 1;
 }
 
-/* --- The 'Fading' Custom Section Logic --- */
-/* --- 1. Updated Custom Location Logic (HTML/CSS Only) --- */
-
+/* Custom Location Logic */
 .custom-toggle-container {
     margin: 20px 0;
     padding: 15px;
@@ -418,40 +354,123 @@ select option[value="custom"] {
     margin-left: 10px;
 }
 
-/* Hide the custom area completely by default */
 .custom-input-area {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    pointer-events: none; /* User cannot click/type */
+    pointer-events: none;
     transition: all 0.5s ease;
 }
 
-/* 💡 THE TRICK: When Checkbox is CHECKED, show the area */
 .custom-check:checked ~ .custom-input-area {
     max-height: 150px;
     opacity: 1;
-    pointer-events: auto; /* User can now click/type */
+    pointer-events: auto;
     margin-top: 15px;
     border-left: 3px solid #e67e22;
     padding-left: 15px;
 }
 
-/* --- 2. Final Responsive Polish (Mobile Menu) --- */
+/* 🌟 Target Glow Logic */
+#contact:target .booking-form {
+    border: 2px solid #e67e22;
+    animation: glow-attention 1.2s ease-in-out;
+    box-shadow: 0 0 30px rgba(230, 126, 34, 0.5);
+}
 
+@keyframes glow-attention {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Profile Icon Styling */
+.profile-item {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #e67e22;
+    transition: 0.3s ease;
+    cursor: pointer;
+    background: #fff;
+}
+
+/* 🎫 Success Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.popup-overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: #27ae60;
+    color: white;
+    font-size: 30px;
+    line-height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.btn-close {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #e67e22;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    /* Stack the navbar links vertically on small screens */
-    .nav-links {
-        display: none; /* Hidden by default on mobile - you can show this with a checkbox later if needed */
+    .navbar {
         flex-direction: column;
-        width: 100%;
-        text-align: center;
-        background: #fff;
-        padding: 20px 0;
+        padding: 15px;
+    }
+    
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 10px;
     }
 
     .nav-links li {
-        margin: 10px 0;
+        margin-left: 0;
     }
 
     .form-row {
@@ -462,4 +481,86 @@ select option[value="custom"] {
     .hero-content h1 {
         font-size: 1.8rem;
     }
+}
+/* --- 👤 Profile Icon Hover & Click Message --- */
+
+.profile-item {
+    position: relative; /* Essential for positioning the message */
+}
+
+/* 1. Hover Effect: Glow and slight lift */
+.profile-icon img:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+    border-color: #d35400;
+}
+
+/* 2. The Message Box (Hidden by default) */
+.profile-popup {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 1px solid #eee;
+    text-align: center;
+    z-index: 3000;
+    
+    /* Animation settings */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 0.3s ease;
+}
+
+/* 🚀 THE MAGIC: Show message when icon is clicked (#profile-msg is target) */
+.profile-popup:target {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Little triangle pointing to the icon */
+.profile-tip {
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    background: white;
+    transform: rotate(45deg);
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+
+.profile-close {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-close:hover {
+    text-decoration: underline;
+}
+
+/* Add this to your CSS if not already there */
+.profile-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* This prevents the page from shifting when the profile is active */
+#profile-msg:target {
+    display: block; /* Ensures it shows up */
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
 }
