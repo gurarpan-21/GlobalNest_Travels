@@ -16,7 +16,7 @@ html {
     padding: 20px 8%;
     background: #fff;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -467,31 +467,27 @@ html {
     font-weight: bold;
 }
 
-/* Ensure these are hidden on Desktop */
 .mobile-controls, 
 .menu-toggle, 
 .mobile-profile {
     display: none !important;
 }
 
-/* Ensure the Desktop Profile is visible */
 .desktop-profile {
     display: flex;
     align-items: center;
 }
 
 @media (max-width: 768px) {
-    /* Header Row Layout */
     .navbar {
         padding: 10px 5%;
-        height: auto; /* Allow auto height on mobile */
+        height: auto;
     }
 
     .logo {
-        font-size: 20px; /* Slightly smaller logo */
+        font-size: 20px; 
     }
 
-    /* Show Mobile Controls */
     .mobile-controls {
         display: flex !important;
     }
@@ -500,17 +496,15 @@ html {
         display: block !important;
     }
 
-    /* Hide Desktop Profile within links */
     .desktop-profile {
         display: none !important;
     }
 
-    /* Transform Nav Links into a Mobile Menu */
     .nav-links {
-        display: none; /* Hidden initially */
+        display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px; /* Adjust based on navbar height */
+        top: 70px;
         left: 0;
         width: 100%;
         background: white;
@@ -519,7 +513,6 @@ html {
         z-index: 999;
     }
 
-    /* Show the menu when active class is added */
     .nav-links.active {
         display: flex;
     }
@@ -537,10 +530,45 @@ html {
     }
 
     .btn-nav {
-        display: inline-block !important; /* Center the Book Now button */
+        display: inline-block !important;
         width: auto;
         padding: 10px 30px;
     }
+}
+
+.profile-popup {
+    position: absolute;
+    top: 75px;
+    right: 8%;
+    width: 220px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 5000;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 0.3s ease;
+}
+
+.profile-tip {
+    position: absolute;
+    top: -8px;
+    right: 25px; 
+    width: 16px;
+    height: 16px;
+    background: white;
+    transform: rotate(45deg);
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+#profile-msg:target {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .profile-item {
@@ -553,41 +581,12 @@ html {
     border-color: #d35400;
 }
 
-.profile-popup {
-    position: absolute;
-    top: 65px;
-    right: -10px;
-    width: 220px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    border: 1px solid #eee;
-    text-align: center;
-    z-index: 3000;
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: 0.3s ease;
-}
-
 .profile-popup:target {
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
 }
 
-.profile-tip {
-    position: absolute;
-    top: -8px;
-    right: 15px;
-    width: 15px;
-    height: 15px;
-    background: white;
-    transform: rotate(45deg);
-    border-left: 1px solid #eee;
-    border-top: 1px solid #eee;
-}
 
 .profile-close {
     display: block;
@@ -609,13 +608,6 @@ html {
     text-decoration: none;
 }
 
-#profile-msg:target {
-    display: block; 
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-}
-/* Auth Modal Styling */
 .auth-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -683,7 +675,7 @@ html {
     width: 100%;
     padding: 15px 25px;
     border: 2px solid #eee;
-    border-radius: 50px; /* Makes it look modern/pill-shaped */
+    border-radius: 50px;
     font-size: 1rem;
     outline: none;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
