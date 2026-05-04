@@ -1,4 +1,4 @@
-/* Basic Reset */
+
 html {
     scroll-behavior: smooth;
 }
@@ -9,7 +9,6 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navigation */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -29,7 +28,6 @@ html {
     color: #2c3e50;
 }
 
-/* 🔗 Added: Logo Link Logic */
 .logo a {
     text-decoration: none;
     color: inherit;
@@ -37,12 +35,13 @@ html {
 }
 
 .logo span {
-    color: #e67e22; /* Highlighting "Travels" */
+    color: #e67e22; 
 }
 
 .nav-links {
     display: flex;
     list-style: none;
+    align-items: center; 
 }
 
 .nav-links li {
@@ -67,7 +66,6 @@ html {
     border-radius: 5px;
 }
 
-/* Hero Section */
 .hero {
     height: 90vh;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
@@ -123,7 +121,7 @@ html {
     background: white;
     color: #2c3e50;
 }
-/* Destinations Section */
+
 .destinations {
     padding: 80px 8%;
     background: #f9f9f9;
@@ -150,7 +148,7 @@ html {
 }
 
 .card:hover {
-    transform: translateY(-10px); /* Lifts the card up on hover */
+    transform: translateY(-10px); 
 }
 
 .card img {
@@ -190,13 +188,12 @@ html {
     background: #e67e22;
     color: white;
 }
-/* Booking Section Styling */
+
 .booking {
     padding: 80px 8%;
     background: #fff;
 }
 
-/* Form Styling */
 .booking-form {
     background: #fdfdfd;
     padding: 40px;
@@ -246,7 +243,6 @@ html {
     background: #d35400;
 }
 
-/* Footer */
 .footer {
     text-align: center;
     padding: 30px;
@@ -254,61 +250,83 @@ html {
     color: white;
 }
 
-/* --- Elegant 12-Card Package Styles --- */
 .packages-section {
     padding: 80px 8%;
     background: #fdfdfd;
 }
 
 .package-card {
-    background: white;
+    position: relative;
     border-radius: 12px;
-    border: 1px solid #eee;
-    padding: 30px;
+    padding: 60px 30px; 
     text-align: center;
     transition: 0.4s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    overflow: hidden;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    min-height: 450px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    background-color: rgba(0, 0, 0, 0.6); 
+    background-blend-mode: overlay;
+}
+
+.package-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: inherit;
+    filter: blur(5px);
+    z-index: 0;
+    transform: scale(1.1); 
+}
+
+.package-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .package-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    border-color: #e67e22;
+    transform: translateY(-10px);
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
 .package-header h3 {
-    color: #2c3e50;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    color: rgb(0, 0, 0);
+    border-bottom: 3px solid #e67e22;
+    padding-bottom: 10px;
     margin-bottom: 15px;
-    border-bottom: 2px solid #e67e22;
-    display: inline-block;
-    padding-bottom: 5px;
 }
 
 .package-price {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #2c3e50;
-    margin: 20px 0;
+    color: #ff7700 !important;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
 }
-
 .package-price span {
-    font-size: 0.9rem;
-    color: #7f8c8d;
+    font-size: 1.1rem;
+    color: #080909;
     font-weight: 400;
 }
 
 .package-features ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 25px;
-    text-align: left;
+    margin: 20px 0;
 }
 
 .package-features li {
-    padding: 8px 0;
-    color: #555;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
 .btn-book {
@@ -326,7 +344,6 @@ html {
     background: #e67e22;
 }
 
-/* Form Layout Upgrades */
 .form-row {
     display: flex;
     gap: 15px;
@@ -336,7 +353,6 @@ html {
     flex: 1;
 }
 
-/* Custom Location Logic */
 .custom-toggle-container {
     margin: 20px 0;
     padding: 15px;
@@ -371,7 +387,6 @@ html {
     padding-left: 15px;
 }
 
-/* 🌟 Target Glow Logic */
 #contact:target .booking-form {
     border: 2px solid #e67e22;
     animation: glow-attention 1.2s ease-in-out;
@@ -384,24 +399,22 @@ html {
     100% { transform: scale(1); }
 }
 
-/* Profile Icon Styling */
 .profile-item {
-    margin-left: 20px;
+    margin-left: 35px; 
     display: flex;
     align-items: center;
 }
 
 .profile-icon img {
-    width: 40px;
-    height: 40px;
+    width: 48px; 
+    height: 48px;
     border-radius: 50%;
     border: 2px solid #e67e22;
+    object-fit: cover; 
     transition: 0.3s ease;
     cursor: pointer;
     background: #fff;
 }
-
-/* 🎫 Success Popup Styles */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -454,7 +467,6 @@ html {
     font-weight: bold;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -482,25 +494,22 @@ html {
         font-size: 1.8rem;
     }
 }
-/* --- 👤 Profile Icon Hover & Click Message --- */
 
 .profile-item {
-    position: relative; /* Essential for positioning the message */
+    position: relative; 
 }
 
-/* 1. Hover Effect: Glow and slight lift */
 .profile-icon img:hover {
     transform: translateY(-3px) scale(1.1);
     box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
     border-color: #d35400;
 }
 
-/* 2. The Message Box (Hidden by default) */
 .profile-popup {
     position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
+    top: 65px;
+    right: -10px;
+    width: 220px;
     background: white;
     padding: 15px;
     border-radius: 10px;
@@ -508,22 +517,18 @@ html {
     border: 1px solid #eee;
     text-align: center;
     z-index: 3000;
-    
-    /* Animation settings */
     visibility: hidden;
     opacity: 0;
     transform: translateY(-10px);
     transition: 0.3s ease;
 }
 
-/* 🚀 THE MAGIC: Show message when icon is clicked (#profile-msg is target) */
 .profile-popup:target {
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Little triangle pointing to the icon */
 .profile-tip {
     position: absolute;
     top: -8px;
@@ -549,7 +554,6 @@ html {
     text-decoration: underline;
 }
 
-/* Add this to your CSS if not already there */
 .profile-icon {
     display: flex;
     align-items: center;
@@ -557,10 +561,108 @@ html {
     text-decoration: none;
 }
 
-/* This prevents the page from shifting when the profile is active */
 #profile-msg:target {
-    display: block; /* Ensures it shows up */
+    display: block; 
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
 }
+/* Auth Modal Styling */
+.auth-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 5000;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+}
+
+.auth-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.auth-form input, .auth-form select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.toggle-text {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+#toggle-link {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#toggle-link:hover {
+    text-decoration: underline;
+}
+
+.auth-form input, .auth-form select {
+    transition: 0.3s border-color;
+}
+
+.auth-form input:focus {
+    border-color: #e67e22 !important;
+    outline: none;
+}
+.search-bar-section {
+    padding: 30px 8% 10px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.search-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#destination-search {
+    width: 100%;
+    padding: 15px 25px;
+    border: 2px solid #eee;
+    border-radius: 50px; /* Makes it look modern/pill-shaped */
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+#destination-search:focus {
+    border-color: #e67e22;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.2);
+}
+
+.search-count {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    font-style: italic;
+}
+.pkg-venice { background-image: url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=800&q=80'); }
+.pkg-santorini { background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80'); }
+.pkg-lucerne { background-image: url('https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80'); }
+.pkg-reykjavik { background-image: url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=800&q=80'); }
+.pkg-maldives { background-image: url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80'); }
+.pkg-egypt { background-image: url('https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=800&q=80'); }
+.pkg-turkey { background-image: url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80'); }
+.pkg-australia { background-image: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80'); }
+.pkg-dubai { background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80'); }
+.pkg-usa { background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80'); }
+.pkg-sa { background-image: url('https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&w=800&q=80'); }
+.pkg-brazil { background-image: url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80'); }
