@@ -1,4 +1,3 @@
-// --- Data and Pricing ---
 const prices = {
     "Venice, Italy": 115000, "Santorini, Greece": 98000, "Lucerne, Switzerland": 145000,
     "Reykjavik, Iceland": 125000, "Malé, Maldives": 85000, "Cairo, Egypt": 72000,
@@ -8,23 +7,21 @@ const prices = {
 
 let isLoginMode = false;
 
-// --- 1. SESSION PERSISTENCE (Checks if user is already logged in) ---
 function checkExistingSession() {
     const activeUser = localStorage.getItem('activeSession');
     const modal = document.getElementById('signin-modal');
     
     if (activeUser) {
-        // User is logged in: keep modal hidden and load data
+        
         const userData = JSON.parse(activeUser);
         applyUserData(userData);
         modal.style.display = 'none';
     } else {
-        // No user found: Show the modal
+        
         modal.style.display = 'flex';
     }
 }
 
-// --- 2. GUEST LOGIC ---
 function continueAsGuest() {
     const guestData = {
         name: "Guest Explorer",
@@ -34,11 +31,10 @@ function continueAsGuest() {
     };
     applyUserData(guestData);
     document.getElementById('signin-modal').style.display = 'none';
-    // We don't save 'activeSession' for guests so the popup returns on reload
+    
     alert("Welcome! You are exploring as a Guest.");
 }
 
-// --- 3. AUTHENTICATION UI TOGGLE ---
 function toggleAuth() {
     isLoginMode = !isLoginMode;
     const title = document.getElementById('auth-title');
@@ -64,8 +60,6 @@ function toggleAuth() {
         toggleLink.innerText = "Sign In";
     }
 }
-
-// --- 4. CORE AUTH LOGIC (Sign Up / Sign In) ---
 function handleAuth() {
     const email = document.getElementById('guest-email').value.trim();
     const pass = document.getElementById('guest-pass').value;
@@ -85,7 +79,7 @@ function handleAuth() {
 
         const user = JSON.parse(existingUserData);
         if (user.password === pass) {
-            // SUCCESSFUL LOGIN: Save the session
+            
             localStorage.setItem('activeSession', JSON.stringify(user)); 
             applyUserData(user);
             document.getElementById('signin-modal').style.display = 'none';
@@ -93,7 +87,6 @@ function handleAuth() {
             alert("🔑 Invalid Password!");
         }
     } else {
-        // SIGN UP LOGIC
         const name = document.getElementById('guest-name').value.trim();
         const gender = document.getElementById('guest-gender').value;
 
@@ -102,40 +95,57 @@ function handleAuth() {
 
         const newUser = { name, email, gender, password: pass };
         localStorage.setItem(email, JSON.stringify(newUser));
-        
-        // AUTO-LOGIN: Save the session
+
         localStorage.setItem('activeSession', JSON.stringify(newUser)); 
         applyUserData(newUser);
         document.getElementById('signin-modal').style.display = 'none';
     }
 }
 
-// --- 5. UI UPDATER ---
-function applyUserData(data) {
-    document.getElementById('user-full-name').innerText = data.name;
-    document.getElementById('user-email-display').innerText = data.email;
-    document.getElementById('user-title').innerText = data.gender;
+function applyUserData(user) {
+    const nameDisplays = document.querySelectorAll('#user-full-name');
+    const emailDisplays = document.querySelectorAll('#user-email-display');
+    const signinModals = document.querySelectorAll('#signin-modal');
+
+    nameDisplays.forEach(el => {
+        el.innerText = user.name || "Guest";
+    });
+
+    emailDisplays.forEach(el => {
+        el.innerText = user.email || "guest@globalnest.com";
+    });
+
+    signinModals.forEach(modal => {
+        modal.style.display = 'none';
+    });
     
-    // Fill booking form (if user is not a guest)
-    if (data.name !== "Guest Explorer") {
-        document.getElementById('user-name').value = data.name;
-        document.getElementById('user-email').value = data.email;
-    }
+    const hour = new Date().getHours();
+    const greetText = hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
+    document.querySelectorAll('#time-greet').forEach(el => el.innerText = greetText);
 }
 
-// --- 6. INITIALIZATION & LIVE CALCULATOR ---
+function continueAsGuest() {
+    const guestUser = {
+        name: "Guest Traveler",
+        email: "explorer@globalnest.com",
+        gender: "Not Specified"
+    };
+    
+    localStorage.setItem('activeSession', JSON.stringify(guestUser));
+    
+    applyUserData(guestUser);
+    
+    document.getElementById('signin-modal').style.display = 'none';
+}
 window.onload = function() {
-    // Decision happens the millisecond the window loads
     checkExistingSession(); 
 
-    // Time Greeting Logic
     const timeGreet = document.getElementById('time-greet');
     const hour = new Date().getHours();
     if (hour >= 5 && hour < 12) timeGreet.innerText = "Good Morning";
     else if (hour >= 12 && hour < 18) timeGreet.innerText = "Good Afternoon";
     else timeGreet.innerText = "Good Evening";
 
-    // Pricing Logic
     function updatePrice() {
         const dest = document.getElementById('destination-select').value;
         const count = document.getElementById('traveler-count').value;
@@ -149,24 +159,21 @@ window.onload = function() {
     document.getElementById('traveler-count').addEventListener('input', updatePrice);
 };
 
-// This function clears the session and forces a reload to show the login popup again
 function logout() {
-    // 1. Remove only the 'activeSession' so the user accounts stay in the database
+
     localStorage.removeItem('activeSession');
     
-    // 2. Alert the user
     alert("You have been logged out successfully.");
     
-    // 3. Reload the page to reset the UI and show the Auth Modal
     location.reload();
 }
 function searchDestinations() {
     const input = document.getElementById('destination-search').value.toLowerCase();
-    const cards = document.getElementsByClassName('card'); // Assumes your destination cards use the 'card' class
+    const cards = document.getElementsByClassName('card'); 
     let visibleCount = 0;
 
     for (let i = 0; i < cards.length; i++) {
-        // We look for the h3 tag inside each card which contains the city/country name
+       
         const title = cards[i].querySelector('h3').innerText.toLowerCase();
         
         if (title.includes(input)) {
@@ -184,4 +191,16 @@ function searchDestinations() {
     } else {
         countDisplay.innerText = `Found ${visibleCount} matches for "${input}"`;
     }
+}
+function toggleMenu() {
+    const menu = document.getElementById('nav-links-menu');
+    menu.classList.toggle('active');
+}
+// Ensure this runs on page load
+function updateProfileUI(user) {
+    const nameTags = document.querySelectorAll('#user-full-name');
+    const emailTags = document.querySelectorAll('#user-email-display');
+    
+    nameTags.forEach(tag => tag.innerText = user.name || "Gurarpan Arora");
+    emailTags.forEach(tag => tag.innerText = user.email || "gurarpanarora8thd@gmail.com");
 }
