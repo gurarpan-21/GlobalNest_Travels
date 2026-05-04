@@ -37,41 +37,46 @@
 </div>
 
 
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#home" style="text-decoration: none; color: inherit;">
-                GlobalNest <span>Travels</span>
+<nav class="navbar">
+    <div class="logo">
+        <a href="#home">GlobalNest <span>Travels</span></a>
+    </div>
+
+    <div class="mobile-controls">
+        <div class="profile-item mobile-profile">
+            <a href="#profile-msg" class="profile-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
             </a>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#destinations">Destinations</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#contact" class="btn-nav">Book Now</a></li>
-            <li class="profile-item">
-                <a href="#profile-msg" class="profile-icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
-                </a>
-                <div id="profile-msg" class="profile-popup">
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </div>
+
+    <ul class="nav-links" id="nav-links-menu">
+        <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+        <li><a href="#destinations" onclick="toggleMenu()">Destinations</a></li>
+        <li><a href="#packages" onclick="toggleMenu()">Packages</a></li>
+        <li><a href="#contact" class="btn-nav" onclick="toggleMenu()">Book Now</a></li>
+        
+        <li class="profile-item desktop-profile">
+             <a href="#profile-msg" class="profile-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
+            </a>
+        </li>
+    </ul>
+
+<div id="profile-msg" class="profile-popup">
     <div class="profile-tip"></div>
     <p id="greeting-box">
-        <span id="time-greet">Good Evening</span>, 
-        <strong id="user-title">Sir</strong> 
-        <strong id="user-full-name">Guest</strong>
+        <span id="time-greet">Good Evening</span>, <strong>Sir</strong><br>
+        <strong id="user-full-name" style="font-size: 1.1rem;">Gurarpan Arora</strong>
     </p>
-    <hr>
-    <p id="user-email-display" style="font-size: 0.75rem; color: #7f8c8d; margin-top: 5px;">guest@globalnest.com</p>
-    
-    <!-- FIX: Changed onclick from location.reload() to logout() -->
-    <hr>
-    <a href="javascript:void(0)" onclick="logout()" style="color: #c0392b; font-size: 0.8rem; text-decoration: none; font-weight: bold; cursor: pointer; display: block; margin-top: 10px;">Logout</a>
-    
-    <a href="#close" class="profile-close">Close</a>
+    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+    <p id="user-email-display" style="font-size: 0.75rem; color: #7f8c8d;">gurarpanarora8thd@gmail.com</p>
+    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+    <a href="javascript:void(0)" onclick="logout()" style="color: #c0392b; font-size: 0.85rem; text-decoration: none; font-weight: bold; display: block; margin-bottom: 10px;">Logout</a>
+    <a href="#close" class="profile-close" style="font-size: 0.8rem; color: #333; text-decoration: none;">Close</a>
 </div>
-            </li>
-        </ul>
-    </nav>
-
+</nav>
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>GlobalNest Travels: A Responsive Travel Agency Web Application</h1>
@@ -197,7 +202,7 @@
     <p style="text-align: center; color: #7f8c8d; margin-bottom: 50px;">Detailed pricing and inclusions for all 12 global destinations.</p>
 
     <div class="container">
-        <!-- 1. Venice -->
+       
         <div class="package-card pkg-venice">
             <div class="package-header"><h3>Venice, Italy</h3></div>
             <div class="package-price">₹1,15,000 <span>/ 6 Days</span></div>
@@ -211,7 +216,6 @@
             <a href="#contact" class="btn-book">Book Italy</a>
         </div>
 
-        <!-- 2. Santorini -->
         <div class="package-card pkg-santorini">
             <div class="package-header"><h3>Santorini, Greece</h3></div>
             <div class="package-price">₹98,000 <span>/ 5 Days</span></div>
@@ -225,7 +229,6 @@
             <a href="#contact" class="btn-book">Book Greece</a>
         </div>
 
-        <!-- 3. Lucerne -->
         <div class="package-card pkg-lucerne">
             <div class="package-header"><h3>Lucerne, Switzerland</h3></div>
             <div class="package-price">₹1,45,000 <span>/ 7 Days</span></div>
@@ -239,7 +242,6 @@
             <a href="#contact" class="btn-book">Book Switzerland</a>
         </div>
 
-        <!-- 4. Reykjavik -->
         <div class="package-card pkg-reykjavik">
             <div class="package-header"><h3>Reykjavik, Iceland</h3></div>
             <div class="package-price">₹1,25,000 <span>/ 6 Days</span></div>
@@ -253,7 +255,6 @@
             <a href="#contact" class="btn-book">Book Iceland</a>
         </div>
 
-        <!-- 5. Male -->
         <div class="package-card pkg-maldives">
             <div class="package-header"><h3>Malé, Maldives</h3></div>
             <div class="package-price">₹85,000 <span>/ 4 Days</span></div>
@@ -267,7 +268,6 @@
             <a href="#contact" class="btn-book">Book Maldives</a>
         </div>
 
-        <!-- 6. Cairo -->
         <div class="package-card pkg-egypt">
             <div class="package-header"><h3>Cairo, Egypt</h3></div>
             <div class="package-price">₹72,000 <span>/ 7 Days</span></div>
@@ -281,7 +281,6 @@
             <a href="#contact" class="btn-book">Book Egypt</a>
         </div>
 
-        <!-- 7. Cappadocia -->
         <div class="package-card pkg-turkey">
             <div class="package-header"><h3>Cappadocia, Turkey</h3></div>
             <div class="package-price">₹89,000 <span>/ 5 Days</span></div>
@@ -295,7 +294,6 @@
             <a href="#contact" class="btn-book">Book Turkey</a>
         </div>
 
-        <!-- 8. Sydney -->
         <div class="package-card pkg-australia">
             <div class="package-header"><h3>Sydney, Australia</h3></div>
             <div class="package-price">₹1,55,000 <span>/ 8 Days</span></div>
@@ -309,7 +307,6 @@
             <a href="#contact" class="btn-book">Book Australia</a>
         </div>
 
-        <!-- 9. Dubai -->
         <div class="package-card pkg-dubai">
             <div class="package-header"><h3>Dubai, UAE</h3></div>
             <div class="package-price">₹65,000 <span>/ 5 Days</span></div>
@@ -323,7 +320,6 @@
             <a href="#contact" class="btn-book">Book Dubai</a>
         </div>
 
-        <!-- 10. New York -->
         <div class="package-card pkg-usa">
             <div class="package-header"><h3>New York, USA</h3></div>
             <div class="package-price">₹1,85,000 <span>/ 6 Days</span></div>
@@ -337,7 +333,6 @@
             <a href="#contact" class="btn-book">Book USA</a>
         </div>
 
-        <!-- 11. Cape Town -->
         <div class="package-card pkg-sa">
             <div class="package-header"><h3>Cape Town, SA</h3></div>
             <div class="package-price">₹1,10,000 <span>/ 7 Days</span></div>
