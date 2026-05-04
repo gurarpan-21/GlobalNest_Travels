@@ -488,16 +488,21 @@ html {
         font-size: 20px; 
     }
 
+    /* FIX: Force show both the container AND the profile image */
     .mobile-controls {
         display: flex !important;
     }
 
-    .menu-toggle {
-        display: block !important;
+    .mobile-profile {
+        display: block !important; /* This was the missing link! */
     }
 
     .desktop-profile {
         display: none !important;
+    }
+
+    .menu-toggle {
+        display: block !important;
     }
 
     .nav-links {
