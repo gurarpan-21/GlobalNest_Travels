@@ -1,3 +1,4 @@
+
 html {
     scroll-behavior: smooth;
 }
@@ -466,31 +467,79 @@ html {
     font-weight: bold;
 }
 
+/* Ensure these are hidden on Desktop */
+.mobile-controls, 
+.menu-toggle, 
+.mobile-profile {
+    display: none !important;
+}
+
+/* Ensure the Desktop Profile is visible */
+.desktop-profile {
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width: 768px) {
+    /* Header Row Layout */
     .navbar {
-        flex-direction: column;
-        padding: 15px;
+        padding: 10px 5%;
+        height: auto; /* Allow auto height on mobile */
     }
-    
+
+    .logo {
+        font-size: 20px; /* Slightly smaller logo */
+    }
+
+    /* Show Mobile Controls */
+    .mobile-controls {
+        display: flex !important;
+    }
+
+    .menu-toggle {
+        display: block !important;
+    }
+
+    /* Hide Desktop Profile within links */
+    .desktop-profile {
+        display: none !important;
+    }
+
+    /* Transform Nav Links into a Mobile Menu */
     .nav-links {
+        display: none; /* Hidden initially */
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Adjust based on navbar height */
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        z-index: 999;
+    }
+
+    /* Show the menu when active class is added */
+    .nav-links.active {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 15px;
-        gap: 10px;
     }
 
     .nav-links li {
-        margin-left: 0;
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
     }
 
-    .form-row {
-        flex-direction: column;
-        gap: 0;
+    .nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
     }
 
-    .hero-content h1 {
-        font-size: 1.8rem;
+    .btn-nav {
+        display: inline-block !important; /* Center the Book Now button */
+        width: auto;
+        padding: 10px 30px;
     }
 }
 
